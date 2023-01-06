@@ -33,6 +33,82 @@
         h5+p {
             background-color: pink;
         }
+        /* 일반 구조 선택자(구조 의사 클래스) 
+            1. : first-child
+            2. : last-child
+            3. : nth-child()
+            4. : nth-last-child()
+        */
+        #div-test1 p:first-child {
+            color : blue;
+            background-color: bisque;
+        }
+        #div-test1 p:last-child {
+            color : red;
+        }
+         /* 한개선택시 순서-숫자, 여러개 선택시 조건 써준다 ex.2의 배수 */
+        #div-test1 p:nth-child(2n) {
+            color : green;
+        }
+        /* 형태 구조 선택자
+            1. : first-of-type
+            2. : last-of-type
+            3. : nth-of-type()
+            4. : nth-last-of-type()
+         */
+        #div-test4 p:last-of-type {
+            color : green;
+        }
+        #div-test4 h4:first-of-type {
+            background-color: yellow;
+        }
+        /* 반응 선택자 
+            1. active - 사용자가 클릭한 태그 선택
+            2. hover - 사용자의 커서가 올라가 있는 태그 선택
+        */
+        #div-test4 :active {
+            background-color: turquoise;
+        }
+        #div-test4 :hover {
+            --background-color: lime;
+        }
+        /* 상태 선택자(input태그와 관련)
+            1. checked - 체크상태의 input태그를 선택
+            2. focus - 커서가 있는 input태그를 선택 
+        */
+        [type=checkbox]:checked {
+            width : 30px;
+            height: 30px;
+        }
+        [type=text]:focus {
+            background-color: lightgrey;
+        }
+        /* 속성 선택자
+            1. enabled - option태그에서 선택 가능한 상태
+            1. disabled - option태그에서 선택 불가능한 상태         
+        */
+        option:disabled {
+            background-color: grey;
+        }
+        option:enabled {
+            background-color: skyblue;
+        }
+        /* 링크 선택자 
+            1. link - 링크 들어가기 전
+            2. visited - 링크 들어간 후
+        */
+        a:link {
+            color: brown;
+        }
+        a:visited {
+            color: green;
+        }
+        /* 부정 선택자
+            선택한 것이 아닌 것(not붙이기)을 선택
+        */
+        #div-test4 p:not(:nth-of-type(2n)) {
+            background-color: aqua;
+        }
     </style>
 </head>
 <body>
@@ -43,7 +119,52 @@
         <p>자손3</p>
         <p>자손4</p>
         <p>자손5</p>
+        <h5>자손2</h5>
+        <p>자손3</p>
     </div>
 
+    <h1>일반 구조 선택자</h1>
+<div>
+    <div id="div-test1">
+        <p>테스트1-1 입니다.</p>
+        <p>테스트1-2 입니다.</p>
+        <p>테스트1-3 입니다.</p>
+        <p>테스트1-4 입니다.</p>
+        <p>테스트1-5 입니다.</p>
+    </div>
+</div>
+    <h1>형태 구조 선택자</h1>
+    <div id="div-test4">
+        <p>테스트 1p입니다.</p>
+        <h4>테스트 h4의 1번째</h4>
+        <p>테스트 2p입니다.</p>
+        <h4>테스트 h4의 2번째</h4>
+        <p>테스트 3p입니다.</p>
+        <h4>테스트 h4의 3번째</h4>
+        <p>테스트 4p입니다.</p>
+        <h4>테스트 h4의 4번째</h4>
+    </div>
+    <h1>상태 선택자</h1>
+    <form action="">
+        <fieldset>
+            <legend>회원 정보 입력</legend>
+                이름 : <input type="text"><br>
+                아이디 : <input type="text"><br>
+                이메일 : <input type="text"><br>
+                취미 : <input type="checkbox">독서
+                    <input type="checkbox">코딩
+                    <input type="checkbox">수영<small>(상태 선택자)</small><br>
+                <select>
+                    <option value="" disabled>자바</option>
+                    <option value="">오라클</option>
+                    <option value="">JDBC</option>
+                    <option value="">HTML</option>
+                    <option value="">CSS</option>
+                </select><small>(속성 선택자)</small><br>
+                <a href="https://www.iei.or.kr">KH정보교육원</a><small>(링크 선택자)</small><br>
+                <input type="submit" value="제출하기">
+                <input type="reset" value="취소하기">
+        </fieldset>
+    </form>
 </body>
 </html>
