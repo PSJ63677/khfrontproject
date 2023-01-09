@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 기본문법</title>
+</head>
+<body>
+    <h3 id="h3-tag">자바스크립트 기본문
+        <h3>숫자(Number)</h3>
+        <p>
+            - 정수형 숫자와 부동소수점 숫자로 구분
+            <br> 내장객체로 Math객체 제공, 기본 메소드 존재
+            <br>Math.abs():절대값, 
+        <h5>문자열 -> 숫자</h5>
+        <p>
+            숫자, 문자 + 이외에 사칙연산시 숫자가 우선되어 문자를
+            숫자로 변환<br>
+            강제 형변환 함수 이용 : Number(), parseInt() 등..
+        </p>
+        <h3>제어문</h3>
+        <p>
+            1. 조건문 : if, if ~ else, else if, switch <br> 
+            2. 반복문 : for, while, do~while, for in <br>
+            3. 분기문 : continue, break <br>
+        </p>
+        <h3>연산자 종류</h3>
+        <p>
+            1. 최우선 연산자 : (), [], .<br>
+            2. 단항 연산자 : ++, -- <br>
+            3. 산술 연산자 : +,-,*,/, % <br>
+            4. 관계 연산자 : >, <, >=, <=, ==, !=, ===, !== <br>
+            5. 논리 연산자 : &&, || <br>
+            6. 대입 연산자 : = <br>
+            7. 복합대입 연산자 : +=, -=, *=, /=, %= <br>
+            8. 삼항 연산자 : 조건식 ? 참 : 거짓 <br>
+        </p>
+        ID : <input type="text" id="user-id">
+        PW : <input type="password" id="user-pw"><br>
+        <input type="submit" value="로그인">
+        <script>
+            var num;
+            var number;
+            var num2;
+            num = 1;
+            number = "Hello Javascript"
+            num2 = true;
+            // alert(num);
+            console.log(num);
+
+            console.log(0 == 0);
+            console.log(0 == "0");
+            console.log(0 === "0");
+            console.log(1 === "1");
+            console.log(1 === 1);
+            console.log(0 === 0);
+            // ( === ) 안에있는 값과 타입까지 같아야 true를 반환
+
+            // if문
+            // input cannot be resolved
+            // Uncaught ReferenceError: input is not defined
+            var input = 3;
+            if(input > 2) {
+                console.log("2보다 큽니다.");
+            } else {
+                console.log("2보다 작습니다.");
+            }
+            // for문
+            for(var i = 0; i < input; i++) {
+                console.log(i);
+            }
+
+            // Switch문
+            switch(input) {
+                case 1 :console.log("1입니다."); break;
+                case 2 :console.log("2입니다."); break;
+                default : console.log("1또는 2만 판별합니다."); break;
+            }
+
+            var str = document.getElementById("h3-tag").innerHTML;
+            console.log(str)
+            var userId = document.getElementById("user-id").value;
+            if(userId != "") {
+                console.log("비어있지 않습니다.");
+            } else {
+                console.log("비어있습니다.")
+            }
+        </script>  
+</body>
+</html>
