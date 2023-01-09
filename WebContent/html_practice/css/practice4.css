@@ -1,0 +1,22 @@
+#container {
+    width: 480px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    margin: 10px;
+}
+
+#shipping li label {
+    width: 80px;
+    text-align: left;
+    float: left;
+}
+
+input[type=text], input[type=email], input[type=tel] {
+    width: 300px;
+}

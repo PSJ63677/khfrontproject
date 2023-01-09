@@ -1,0 +1,22 @@
+#container {
+    width: 520px;
+    border: 1px solid black;
+    padding: 20px 40px;
+    margin: 0px auto;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+li {
+    margin: 10px 0px;
+    --line-height: 30px;
+}
+
+#private-info li label {
+    width: 80px;
+    text-align: left;
+    float: left;
+}
