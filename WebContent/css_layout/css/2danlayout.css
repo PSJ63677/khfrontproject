@@ -1,0 +1,40 @@
+div {
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+/* 전체크기(너비)고정 */
+/* 컨테이너 박스 크기를 조정하지 않으면 창이 열린 
+크기에 따라 사이트가 늘어났다 줄어들었다 함 */
+#container {
+    width: 800px;
+    --margin: 0 auto;
+}
+
+#header {
+    width: 100%;
+    height: 100px;
+    background-color: antiquewhite;
+}
+
+#main {
+    height: 500px;
+    background-color: aliceblue;
+}
+    #main-layer1 {
+        width: 20%;
+        height: inherit;
+        background-color: cadetblue;
+        float: left;
+    }
+    #main-layer2 {
+        width: 80%;
+        height: inherit;
+        background-color: thistle;
+        float: left;
+    }
+
+#footer {
+    height: 100px;
+    background-color: lightpink;
+}
