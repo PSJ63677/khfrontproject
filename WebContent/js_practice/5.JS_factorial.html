@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팩토리얼 계산하기</title>
+    <style>
+        div, h1 {text-align: center;}
+    </style>
+</head>
+<body>
+    <h1>While문을 사용한 팩토리얼 계산</h1>
+    <div id="printOne">1</div>
+    <script>
+        // 5! = 5*4*3*2*1
+        var num = prompt("숫자를 입력하세요.", 10);    // , 뒤의 값은 prompt 초기값 세팅
+        var i = 1;                                    // while문에서 사용할 변수, 곲하는 값
+        var result = 1;                                // 결과 값 담을 변수
+        // console.log(num);
+        var divTag = document.querySelector("#printOne");   // div태그
+        var msgModel = "";                                  // 메시지 담을 변수 - 모델
+        if(num != null) {
+            while(i <= num) {
+                //result = result * i;
+                result *= i;
+                i++;
+            }
+            msgModel = num + "! = " + result;    // 모델 사용하여 값 받기
+        } else {
+            msgModel = "값을 입력하지 않았습니다.";
+        }
+        divTag.innerHTML = msgModel;    // div에 값을 한번만 넣어줌
+    </script>
+</body>
+</html>

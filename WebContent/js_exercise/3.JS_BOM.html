@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>브라우저 객체 모델</title>
+</head>
+<body>
+    <h1>Window 객체</h1>
+    <p>Window 객체는 자바스크립트의 최상위 객체이며 BOM과 DOM으로 나뉜다.</p>
+    <h3>Window 객체</h3>
+    <p>브라우저 창에 대한 설정을 하는 객체</p>
+    <!-- 스크립트 영역에 작성한 코드는 새로고침을 할 때 마다 실행 되기 때문에,
+        클릭을 할 때만 동작하게끔(onclick) css영역에 코드를 작성 해줌(인라인 방식)
+        but, 코드가 너무 길어지기 때문에 코드 자체는 스크립트 영역에 그대로 두고
+        function에 담고 이름을 지정해준 다음, 이름만 호출하도록 작성함 -->
+    <button onclick="callConfirm();">confirm 확인</button><br>
+    <button onclick="callPrompt();">prompt 확인</button>
+    <!-- <button onclick="javascript:var result=confirm('클릭됨');console.log(result);">confirm 확인</button><br> -->
+    <!-- <button onclick="javascript:var userId=prompt('클릭됨');console.log(userId);">prompt 확인</button> -->
+
+<script>
+        /* window.(생략가능) alert : 확인,  confirm : 확인·취소,  
+            prompt : 값 입력받음(input태그와 다름) */        
+        function callConfirm() {
+            var result = window.confirm("확인을 누르시면 true, 취소를 누르시면 false");
+            console.log(result);
+        }
+        // var result = window.confirm("확인을 누르시면 true, 취소를 누르시면 false");
+        // console.log(result);
+        function callPrompt() {
+            var userId = window.prompt("아이디를 입력하세요");
+            console.log(userId);
+        }
+    </script>
+</body>
+</html>
