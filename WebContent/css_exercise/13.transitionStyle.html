@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>트랜지션 스타일</title>
+    <style>
+        div {
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+        }
+        .tran1 {
+            background-color: royalblue;
+            border: 1px dashed royalblue;
+            transition-duration: 5s;
+        }
+        .tran1:hover {
+            background-color: thistle;
+            border: 1px dashed thistle;
+        }
+        .tran2 {
+            background-color: royalblue;
+            border: 1px solid royalblue;
+            transition-property: background-color, transform, width, height;
+            transition-duration: 1s, 10s, 5s, 5s;
+        }
+        .tran2:hover {
+            width: 200px;
+            height: 200px;
+            background-color: thistle;
+            transform: rotateZ(180deg);
+        }
+        .tran3 {
+            background-color: royalblue;
+            border: 1px solid royalblue;
+            transition-duration: 5s;
+            transition-timing-function: ease-in-out;    /* 기본값 linear(일정하게 변화) */
+        }
+        .tran3:hover {
+            background-color: thistle;
+            border: 1px solid thistle;
+        }
+        .tran4 {
+            background-color: royalblue;
+            border: 1px solid royalblue;
+            transition-duration: 5s;
+            transition-delay: 2s;
+            /* 커서대면 바로 동작하는 것을 지연시킴, 커서 대고 n초 후 동작 */
+        }
+        .tran4:hover {
+            background-color: thistle;
+            border: 1px solid thistle;
+            transform: rotateZ(180deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>트랜지션</h1>
+    <p>시간에 따라 웹 요소의 스타일 속성이 조금씩 바뀌는 것을 의미</p>
+    <h3>트랜지션 진행 시간 지정하기</h3>
+    <div class="tran1"></div>
+    <hr>
+    <h3>트랜지션 진행별 시간 설정하기</h3>
+    <div class="tran2"></div>
+    <hr>
+    <h3>트랜지션 진행별 속도 지정하기</h3>
+    <p>transition-timing-function : linear | ease | ease-in | ease-out | ease-in-out | cublic-bezier(n,n,n,n)</p>
+    <div class="tran3"></div>
+    <hr>
+    <h3>트랜지션 시간 지연하기</h3>
+    <div class="tran4"></div>    
+    <br><br><br><br><br>
+</body>
+</html>
