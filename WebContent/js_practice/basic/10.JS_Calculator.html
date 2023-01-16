@@ -11,11 +11,11 @@
     첫번째 값 : <input type="text" id="input1"><br>
     두번째 값 : <input type="text" id="input2"><br>
     <!-- <button>+</button> -->
-    <input type="button" value="+" onclick="calculate('+')">
-    <input type="button" value="-" onclick="calculate('-')">
-    <input type="button" value="x" onclick="calculate('x')">
-    <input type="button" value="/" onclick="calculate('/')">
-    <input type="button" value="%" onclick="calculate('%')">
+    <input type="button" value="+" onclick="calculate(this.value)">
+    <input type="button" value="-" onclick="calculate(this.value)">
+    <input type="button" value="x" onclick="calculate(this.value)">
+    <input type="button" value="/" onclick="calculate(this.value)">
+    <input type="button" value="%" onclick="calculate(this.value)">
     <br><br>
     계산결과 : <span id = "result"></span>
     <script>

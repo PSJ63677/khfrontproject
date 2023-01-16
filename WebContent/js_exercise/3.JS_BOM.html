@@ -15,14 +15,63 @@
         클릭을 할 때만 동작하게끔(onclick) css영역에 코드를 작성 해줌(인라인 방식)
         but, 코드가 너무 길어지기 때문에 코드 자체는 스크립트 영역에 그대로 두고
         function에 담고 이름을 지정해준 다음, 이름만 호출하도록 작성함 -->
-    <button onclick="callConfirm();">confirm 확인</button><br>
-    <button onclick="callPrompt();">prompt 확인</button>
+    <button onclick="callConfirm();">confirm 확인</button><br><br>
+    <button onclick="callPrompt();">prompt 확인</button><br><br>
     <!-- <button onclick="javascript:var result=confirm('클릭됨');console.log(result);">confirm 확인</button><br> -->
     <!-- <button onclick="javascript:var userId=prompt('클릭됨');console.log(userId);">prompt 확인</button> -->
-
+    <button onclick="callOpen();">open 확인</button>
+    <button onclick="callClose();">Close 확인</button><br><br>
+    <button id="callTimeOut">setTimrOut 확인</button><br><br>
+    <button id="callInterval">setInterval 확인</button>
+    <button id="callIntervalClear">clearInterval 확인</button><br><br>
+    <button onclick="startClock();">디지털 시계 On</button>
+    <button onclick="stopClock();">디지털 시계 Off</button>
+    <div id="clockArea" style="background-color: #ccc; border : 1px solid black; width:300px;height:100px;font-size: 30px;color:black;"></div>
+    
+    <div>
+        <h3>screen 객체</h3>
+        <p>웹 브라우저 화면이 아닌 운영체계 화면의 속성을 가진 객체</p>
+        <button onclick="checkScreen();">스크린 객체 확인</button>
+        <br><br>
+        <hr>
+        <h3>navigator 객체</h3>
+        <p>웹 페이지를 실행하고 있는 브라우저에 대한 정보를 가지고 있는 객체</p>
+        <button onclick="checkNavigator();">네비게이터 객체 확인</button>
+        <br><br>
+        <hr>
+        <h3>location 객체</h3>
+        <p>브라우저 주소 표시줄과 관련된 객체</p>
+        <button onclick="javascript:location.reload()">location 확인</button><br><hr>
+        <button onclick="checkHref();">href 페이지 이동</button>
+        <button onclick="checkAssign();"> 페이지 이동</button>
+        <button onclick="checkReplace();"> 페이지 이동</button>
+    </div>
 <script>
+        function checkScreen() {
+            console.log(screen);
+        }
+        function checkNavigator() {
+            console.log(navigator);
+            // user-agent
+        }
+        function checkHref() {
+            // 페이지 이동
+            location.href = "http://www.naver.com";
+        }
+        function checkAssign() {
+            // 뒤로가기 가능한 페이지 이동
+            location.assign("http://www.naver.com");
+        }
+        function checkReplace() {
+            // 뒤로가기 불가능한 에이지 이동
+            location.replace("http://www.google.co.kr");
+        }
         /* window.(생략가능) alert : 확인,  confirm : 확인·취소,  
-            prompt : 값 입력받음(input태그와 다름) */        
+            prompt : 값 입력받음(input태그와 다름) */ 
+        var myWindow = null; 
+        var eInterval;      
+        var clockObj;
+
         function callConfirm() {
             var result = window.confirm("확인을 누르시면 true, 취소를 누르시면 false");
             console.log(result);
@@ -32,6 +81,36 @@
         function callPrompt() {
             var userId = window.prompt("아이디를 입력하세요");
             console.log(userId);
+        }
+        function callOpen() {
+            myWindow = window.open("2.JS_DOM.html", "pop", "width=500, height=400");
+        }
+        function callClose() {
+            myWindow.close();
+        }
+        document.querySelector("#callTimeOut").addEventListener("click", function() {
+            window.setTimeout(function() {
+                myWindow.close();
+            }, 3000);   // 3초 후에 닫기 (1ms가 기본 - 1ms는 몇 초? 1/1000초 * 3000 = 3초)
+        })
+        document.querySelector("#callInterval").addEventListener("click", function () {
+            eInterval = window.setInterval(function() {
+                console.log("실행되었음");
+            }, 1000);
+        })
+        document.querySelector("#callIntervalClear").onclick = 
+        function() {
+            clearInterval(eInterval);
+        }
+        function startClock() {
+            var areaTag = document.querySelector("#clockArea");
+            clockObj = setInterval(function() {
+                var timeData = new Date();
+                areaTag.innerHTML = timeData.getHours() + " : " + timeData.getMinutes() + " : " + timeData.getSeconds();
+            },1000);
+        }
+        function stopClock() {
+            clearInterval(clockObj);
         }
     </script>
 </body>
