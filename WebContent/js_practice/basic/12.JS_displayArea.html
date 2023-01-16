@@ -58,6 +58,34 @@
     <script>
         var showDiv = function(val) {
             // val값에 맞게 각각의 display속성을 바꿔줘야함
+            var selected = document.querySelector("#"+val);
+            // 사용자가 선택한 버튼이 제목이면
+            switch(selected.value) {
+                case "title" : 
+                    document.querySelector("#titleBox").style.display = "block";
+                    document.querySelector("#dateBox").style.display = "none";
+                    document.querySelector("#writerBox").style.display = "none"; 
+                    break;
+                case "date" : 
+                    document.querySelector("#titleBox").style.display = "none";
+                    document.querySelector("#dateBox").style.display = "block";
+                    document.querySelector("#writerBox").style.display = "none";
+                    break;
+                case "writer" : 
+                    document.querySelector("#titleBox").style.display = "none";
+                    document.querySelector("#dateBox").style.display = "none";
+                    document.querySelector("#writerBox").style.display = "block"; 
+                    break;
+            }
+            /* if문으로 작성 방법
+            if (selected.value === "title") {
+                console.log("제목 선택함");
+            } else if (selected.value === "date") {
+                console.log("날짜 선택함");
+            } else if (selected.value === "writer") {
+                console.log("작성자 선택함");
+            }
+            */
         }
     </script>
 </body>

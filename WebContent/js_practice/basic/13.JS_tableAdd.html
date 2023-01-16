@@ -40,6 +40,30 @@
                 <th>취미</th>
             </tr>
             <!-- 입력값들을 추가해 나감 -->            
-        </table>                
+        </table> 
+        </p>
+        <script>
+            var addUser = function() {
+                var name = document.querySelector("#name").value;
+                var age = document.querySelector("#age").value;
+                // gender의 경우(라디오) 둘 중 하나 체크된 값을 가져와야 함
+                var gender = document.querySelectorAll("[name=gender]");
+                if(gender[0].checked) {
+                    gender = "남"
+                } else if(gender[1].checked) {
+                    gender = "여"
+                }
+                var phone = document.querySelector("#phone").value;
+                var hobby = document.querySelectorAll("[name=hobby]");
+                var hobbyVal ="";
+                for(var i = 0; i < hobby.length; i++) {
+                    if(hobby[i].checked) {
+                        hobbyVal += hobby[i].value + " ";
+                    }
+                }
+                var tableTag = document.querySelector("#tbl");
+                tableTag.innerHTML += "<tr><td>"+name+"</td><td>"+age+"</td><td>"+gender+"</td><td>"+phone+"</td><td>"+hobbyVal+"</td></tr>";
+            }
+        </script>               
 </body>
 </html>
