@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기 실습</title>
+</head>
+<body>
+    <h2>간이 계산기 만들기</h2>
+    첫번째 값 : <input type="text" id="input1"><br>
+    두번째 값 : <input type="text" id="input2"><br>
+    <!-- <button>+</button> -->
+    <input type="button" value="+" onclick="calculate('+')">
+    <input type="button" value="-" onclick="calculate('-')">
+    <input type="button" value="x" onclick="calculate('x')">
+    <input type="button" value="/" onclick="calculate('/')">
+    <input type="button" value="%" onclick="calculate('%')">
+    <br><br>
+    계산결과 : <span id = "result"></span>
+    <script>
+        function calculate(operator) {
+            // 첫번째 값 가져오기
+            var input1 = Number(document.querySelector("#input1").value);
+            // 두번째 값 가져오기
+            var input2 = Number(document.querySelector("#input2").value);
+            var result = 0;
+            var spanTag = document.querySelector("#result");
+            switch(operator) {
+                case '+' : result = input1 + input2; break;
+                case '-' : result = input1 - input2; break;
+                case 'x' : result = input1 * input2; break;
+                case '/' : result = input1 / input2; break;
+                case '%' : result = input1 % input2; break;
+            }
+            spanTag.innerHTML = result;
+        }
+        //function calculatePlus() {
+            // 연산하기
+            // 문자열이라 연산이 안됨 "1"+"1"="11"; → Number나 parseInt 써주기
+            // var result = input1.value + input2.value;
+        //    result = Number(input1.value) + parseInt(input2.value);
+            // 계산결과 출력하기
+        //    spanTag.innerHTML = result;
+        //}
+        // function calculateMinus() {
+        //     result = Number(input1.value) - parseInt(input2.value);
+        //     spanTag.innerHTML = result;
+        // }
+        // function calculateMultiply() {
+        //     result = Number(input1.value) * parseInt(input2.value);
+        //     spanTag.innerHTML = result;
+        // }
+        // function calculateDivide() {
+        //     result = Number(input1.value) / parseInt(input2.value);
+        //     spanTag.innerHTML = result;
+        // }
+        // function calculateMod() {
+        //     result = Number(input1.value) % parseInt(input2.value);
+        //     spanTag.innerHTML = result;
+        // }
+    </script>
+</body>
+</html>
