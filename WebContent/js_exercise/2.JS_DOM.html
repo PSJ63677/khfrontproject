@@ -5,8 +5,70 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dom Access</title>
+    <style>
+        .area {
+            height : 100px;
+            background-color: #ccc;
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
+    <h1>DOM(Doument Object Model)</h1>
+    <p>
+        문서객체 : HTML에 있는 태그를 객체화하여 자바스크립트에서 다룰 수 있게 한 것, 
+        모든 노드 객체에 접근할 수 있는 요소와 메소드를 제공
+    </p>
+    <br>
+    노드 : HTML에 있는 태그를 구조화(트리) 하였을 때 각각의 태그가 노드임
+    <br>
+    요소노드(elements) : 태그 자체를 의미하며
+    <br>
+    텍스트노트(textnode) : 태그에 기록되어 있는 문자
+    <br>
+    <h1>노드의 생성과 삭제</h1>
+    절차 : 요소노드 생성 → 텍스트노드 생성 → 요소노드에 텍스트노드 추가 → body객체에 요소노드 추가
+    <br>
+    <p>요소노드는 텍스트노드가 있는 노드와 없는 노드가 존재</p>
+    <h2>텍스트노드가 있는 노드 생성</h2>
+    <p>ex) div, p, span, ...</p>
+    <button id="textNodeBtn">실행확인</button>
+    <div id="area1" class="area"></div>
+
+    <h2>텍스트노드가 없는 노드 생성</h2>
+    <p>ex) img, input, ...</p>
+    <button id="imgNodeBtn">실행확인</button>
+    <div id="area2" class="area"></div>
+
+    <h2>노드삭제</h2>
+    <button id="node-remove">실행확인</button>
+
+    <h1>노드의 선택과 속성 변경</h1>
+    <section id="section1">
+        <h1>childNodes를 이용한 노드 선택</h1>
+        <div class="area">
+            <input type="text">
+            <input type="text">
+            <button id="btn-child">실행확인</button>
+        </div>
+    </section>
+
+    <section id="section2">
+        <h1>Element Node 속성 변경</h1>
+        <div>
+            <!-- <input type="text" class="img-word"> -->
+            <select name="" id="" class="img-select">
+                <option value="link.png">여행</option>
+                <option value="mic.jpg">카메라</option>
+                <option value="tangerines.jpg">귤</option>
+            </select>
+            <input id="change-img" type="button" value="변경">
+        </div>
+        <div>
+            <img src="../images/link.png" alt="" class="img-tag">
+        </div>
+    </section>    
+    <br><br><br>
     <h2>Javascript를 이용한 HTML태그 접근</h2>
     <p>자바스크립트를 이용하여 HTML태그를 동적으로 처리하기 위해서는 DOM객체의
     메소드를 호출하여 접근해야함.
@@ -24,6 +86,65 @@
     <p id="p22" name="pp">돔객체</p>
     <p id="p33" name="pp">자바스크립트</p>
     <script>
+        // 노드생성 고전
+        document.querySelector("#textNodeBtn").onclick
+        =function() {
+            // 요소노드 생성
+            var element = document.createElement("span");
+            // 텍스트노드 생성
+            var text = document.createTextNode("DIV밑으로");
+            // 요소노드에 텍스트노드 추가
+            element.appendChild(text);
+            // div객체에 요소노드 추가
+            document.querySelector("#area1").appendChild(element);
+        }
+        // 표준
+        document.querySelector("#imgNodeBtn").addEventListener
+        ("click", function() {
+            // 요소노드 생성
+            var imgElement = document.createElement("img");
+            imgElement.src = "../images/link.png";
+            imgElement.width = "150";
+            // imgElement.height = "";
+            // div객체에 요소노드 추가
+            document.querySelector("#area2").appendChild(imgElement);
+        });
+        // 노드삭제
+        document.querySelector("#node-remove").onclick
+        = function() {
+            // 영역선택
+            var areaTag = document.querySelector("#area2");
+            var imgTag = document.querySelector("div img");
+            areaTag.removeChild(imgTag);
+        }
+        // 노드 속성 변경
+        document.querySelector("#btn-child").addEventListener
+        ("click", function() {
+            var sectionTag = document.querySelector("#section1");
+            var divTag = sectionTag.querySelector(".area");
+            // console.log(divTag.childNodes);
+            // console.log(divTag.children[0]);
+            // console.log(divTag.children[1]);
+            var input1 = divTag.children[0];
+            var input2 = divTag.children[1];
+            input1.value = "Hello";
+            input2.value = "DOM";
+        });
+        // document.querySelector("#change-img").onclick
+        document.querySelector(".img-select").onchange
+        = function() {
+            var imgTag = document.querySelector(".img-tag");
+            var selectTag = document.querySelector(".img-select");
+            // console.log(selectTag);
+            // console.log(imgTag.src);
+            imgTag.src = "../images/" + selectTag.value;
+        }
+        /* form태그와 관련된 이벤트
+            onclick : 버튼을 클릭 했을 때, onchange : 셀렉트박스 옵션을 바꿨을 때,
+            onsubmit, onblur, oninput, ...
+        */
+
+
         var pTag1 = document.getElementById("p11");    // <p id="p11" name="pp">안녕하세요</p>
         console.log(pTag1.innerHTML);
         pTag1.innerHTML = "안녕히가세요";
