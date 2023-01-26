@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript ES6</title>
+</head>
+<body>
+    <h1>Javascript ES6</h1>
+    <p>변수의 호이스팅 : 선언되지 않은 변수를 사용하더라도 자동으로 선언하여 사용하는 현상</p>
+    <script>
+        let calculator = (num1, num2) => num1+num2;
+        document.write("두 수의 합 : " + calculator(5,10)+"<br><br>")
+        // let calculator = function(num1, num2) {
+        //     return num1+num2;
+        // }
+
+        // 화살표 함수의 매개변수
+        const sayHelloToFriend = (friend) => {
+            document.write(friend + "안녕?");
+        };
+        sayHelloToFriend("일용자야 ");
+
+        // 화살표 함수 리턴 생략 가능
+        let sayHi = () => "안녕하세요?";
+        // let sayHi = () => {
+        //     return "안녕하세요?";
+        // }
+
+        // 화살표 함수
+        const printMember =() => {
+            console.log("화살표 함수로 변경해봄.");
+        }
+
+        // const 사용처
+        const insertMember = function() {
+            console.log("const로 선언한 변수에 초기화");
+        }
+
+        function exConst() {
+            const number = 1;   // 재할당 하지 않을 변하지 않는 수 선언 java의 final과 같음
+            console.log(number);
+            number = 2;      // Assignment to constant variable. 2로 재할당하려고 하면 오류발생
+            console.log(number);
+        }
+
+        function letForLoop() {
+            // let i = 5;
+            for(let i = 1; i < 5; i++) {
+                console.log(i);
+            }
+            console.log(i); // i is not defined
+        }
+
+        function exLet() {
+            let number;
+            number = 2;
+            console.log(number);
+        }
+
+        function exForLoop() {
+            // var i;
+            for(var i=1; i<5; i++) {
+                console.log(i);
+            }
+            console.log(i);
+        }
+
+        function varHoisting() {
+            console.log(number);    // 호이스팅 되어 undefiend 뜸
+            var number;
+            number = 1;
+        }
+    </script>
+</body>
+</html>
