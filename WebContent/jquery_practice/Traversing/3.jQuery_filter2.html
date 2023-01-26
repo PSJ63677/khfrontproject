@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery filter() 메소드2</title>
+    <style>
+        table { 
+            border : 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td { 
+            border : 1px solid black;
+        }
+    </style>
+    <script src="../js/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+	<table>
+		<tr><th>구분</th><th>A</th><th>B</th></tr>
+		<tr><td>가</td><td>10</td><td>10</td></tr>
+		<tr><td>나</td><td>20</td><td>20</td></tr>
+		<tr><td>계</td><td>30</td><td>30</td></tr>
+	</table>
+	<input type="button" value="[가]색 변경" onclick="click1();" />
+	<input type="button" value="[나]색 변경" onclick="click2();" />
+	<input type="button" value="[A]색 변경" onclick="click3();" />
+	<input type="button" value="[B]색 변경" onclick="click4();" />    
+    <script>
+        const clear = () => {
+            $("table td").css("color", "black");
+        }
+
+        var click1 = () => {           
+            clear(); 
+            $("tr:eq(1)").children("td").not(":first-child").css("color", "red");
+            //console.log($("td:nth-child(2)"));
+            //$("td:eq(1)").css("color", "red");
+            //$("td:eq(2)").css("color", "red");
+        }
+        function click2() {
+            clear(); 
+            $("td:eq(4)").css("color", "red");
+            $("td:eq(5)").css("color", "red");
+        }
+        var click3 = function() {
+            clear(); 
+            $("td:eq(1)").css("color", "red");
+            $("td:eq(4)").css("color", "red");
+        }
+        function click4() {
+            clear(); 
+            $("td:eq(2)").css("color", "red");
+            $("td:eq(5)").css("color", "red");
+        }
+    </script>
+</body>
+</html>
