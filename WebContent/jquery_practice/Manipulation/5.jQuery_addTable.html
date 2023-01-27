@@ -13,8 +13,20 @@
             border : 1px solid black
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 </head>
 <body>
+    <script>
+        const add = () => {
+            let title = $("[name=title]").val();
+            let content = $("[name=content]").val();
+            let writer = $("[name=owner]").val();
+            $("table").append("<tr><td>"+title+"</td><td>"+content+"</td><td>"+writer+"</td></tr>");
+            $("[name=title]").val("");
+            $("[name=content]").val("");
+            $("[name=owner]").val("");
+        }
+    </script>
     제목 : <input type="text" name="title"><br> 
     내용 : <input type="text" name="content"><br>
     작성자 : <input type="text" name="owner"><br>

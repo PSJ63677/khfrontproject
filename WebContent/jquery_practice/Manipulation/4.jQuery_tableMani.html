@@ -13,8 +13,28 @@
             border : 1px solid black
         }
     </style>
+    <script src="../../js/jquery-3.6.3.min.js"></script>
 </head>
 <body>
+    <script>
+        $(function() {
+            $("#btn").on("click", function() {
+                var trTags = $("tr");
+                var result = "";
+                trTags.each(function(index, item) {
+                    if(index > 0) {
+                        var tdTags = $(item).children();
+                        var input = tdTags.eq(0).children();
+                        if(input.is(":checked")) {
+                            result += tdTags.eq(1).text() + ", " + tdTags.eq(2).text() + ", " +
+                            tdTags.eq(3).text() + "<br>";
+                        }
+                    }
+                });
+                $("#result").html(result);
+            });
+        });
+    </script>
     <table>
     <tr>
         <th>체크</th>

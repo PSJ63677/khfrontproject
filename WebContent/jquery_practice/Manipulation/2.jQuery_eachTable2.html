@@ -27,8 +27,48 @@
             background-color:grey;
         }
     </style>
+    <script src="../../js/jquery-3.6.3.min.js"></script>
 </head>
 <body>
+    <script>
+        // window.onload = function() {}
+        //document.addEventListener("DOMContentLoaded", function() {})
+        //$(document).ready(function() {})
+        $(function() {
+            $("#btn2").on("click", () => {
+                $("th").addClass("title");
+                // 1번
+                // $("tr").eq(1).children().eq(0).addClass("name");
+                // $("tr").eq(2).children().eq(0).addClass("name");
+                // $("tr").eq(3).children().eq(0).addClass("name");
+                // $("tr").eq(4).children().eq(0).addClass("name");
+                // 2번
+                // $("td").eq(0).addClass("name");
+                // $("td").eq(3).addClass("name");
+                // $("td").eq(6).addClass("name");
+                // $("td").eq(9).addClass("name");
+                // 3번
+                var names = $("td").filter(function(index) {
+                    return index % 3 == 0;
+                });
+                var ages = $("td").filter(function(index) {
+                    return index % 3 == 1;
+                });
+                var addr = $("td").filter(function(index) {
+                    return index % 3 == 2;
+                });
+                names.addClass("name");
+                ages.addClass("age");
+                addr.addClass("addr");
+            });
+            $("#reset").on("click", function() {
+                $("tr").first().children().removeClass("title");
+                $("td:nth-of-type(3n+1)").removeClass("name");
+                $("td:nth-of-type(3n+2)").removeClass("age");
+                $("td:nth-of-type(3n)").removeClass("addr");
+            });
+        });
+    </script>
     문제2. <br>
     적용 버튼 클릭시 style이 적용될 수 있도록 하여라.<br>
     취소 버튼 클릭시 style이 취소될 수 있도록 하여라.<br>

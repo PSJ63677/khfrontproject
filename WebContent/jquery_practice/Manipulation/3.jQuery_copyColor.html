@@ -14,8 +14,32 @@
             float: left;
         }
     </style>
+    <script src="../../js/jquery-3.6.3.min.js"></script>
 </head>
 <body>
+    <script>
+        $(function() {
+            var color = ""
+            $("#img1").on("click", function() {
+                color = $("#img1").css("background-color");
+            });
+            $("#img2").on("click", function() {
+                color = $("#img2").css("background-color");
+            });
+            $("div[id$=th]").on("click", function() {
+                $(this).css("background-color", color);
+            });
+            // $("#1th").on("click", function() {
+            //     $("#1th").css("background-color", color);
+            // ...
+            // $("#7th").on("click", function() {
+            //     $("#7th").css("background-color", color);
+            // });
+            $("#btn1").on("click", function() {
+                $("div[id$=th]").css("background-color", "white");
+            });
+        });
+                </script>
     문제3<br>
     다음 2개의 그림 중 선택한 후 복사 될 수 있도록 구현하여라 <br>
     <fieldset style="width:300px; margin:30px">
