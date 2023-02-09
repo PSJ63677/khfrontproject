@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정규표현식</title>
+    <style>
+        .area {
+            background-color: lightgray;
+            border : 1px solid black;
+            height : 150px;
+        }
+    </style>
+    <script src="../js/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+    <script>
+        $(function() {
+            // 정규표현식 객체 : / /로 만든다
+            // 메소드는 test(), exec(), ...
+            // 정규표현식 활용은 문자열 replace()와 함께
+            $("#btn-regex1").on("click", function() {
+                var target = "javascript jquery ajax";    // 타겟문자열
+                var regExp = /script/;    // 정규표현식값
+                var str = "";
+                // 정규표현식 객제 메소드 2개
+                str += regExp.test(target) +"<br>";    // 타겟문자열에 정규표현식값이 있으면 true반환
+                str += regExp.exec(target) +"<br>";    // 〃 해당 문자열()=정규표현식값) 반환
+                // 문자열 메소드를 사용하여 정규표현식 활용방법
+                str += target.replace(regExp, "스크립트") + "<br>";    // 정규표현식 값을 변환
+                $("#area-tag1").html(str);
+            });
+            // a를 모두 검색하고 싶을 때,
+            // a를 대소문자 구분없이 검색하고 싶을 때,
+            // a를 여러줄에서 검사하고 싶을 때(앵커문자)
+            $("#btn-flag").on("click", function() {
+                var target = "javascript jquery Ajax";
+                var target2 = "javascript\njQuery\nAjax";    // 개행
+                var regExp = /a/gim;    // 슬래시 바깥에 적는것 : 플래그 문자 
+                // g : 전역검색(전체 문자열에서 a검색) i : 대소문자 구분없이
+                // m : 여러 줄이어도 검색(개행이 있는 문자열에서 사용)
+                var area = $("#area-tag2")
+                var str ="";
+                str += target.replace(regExp, "($&)")+"<br>"
+                str += target.replace(regExp, "($&)");
+                area.html(str);
+            });
+            $("#btn-ank").on("click", function() {
+                var target = "javascript\njQuery\nAjax";
+                // 정규표현식으로 하고 싶은 것
+                // 대소문자 구분없이 j로 시작하는 문자 검출
+                var regExp = /^j/gi;    // ^ : ~로 시작하는 
+                var regExp = /ipt$/gim;    // $ : ~로 끝나는
+                var area = document.querySelector("#area-tag3");
+                area.innerHTML += target.replace(regExp, "($&)") + "<br>";
+                area.innerHTML += target.replace(regExp2, "($&)") + "<br>";
+            });
+            $("#btn-meta").on("click", function() {
+                var target = "javascript jQuery Ajax";
+                var regExp = /[au]/g;   
+                // [] 괄호안에 있는것들 각각 다 검출 하나의 문자열 집합과 같음
+                // ex. [a-z] : 영어소문자를 모두 검출
+                // ※ ^를 대괄호 안에 넣으면 제외의 의미가 된다. ※
+                // ex. [^abc] : a b c 빼고 나머지 다 검출(대소문자 공백 특수문자 등)
+                var areatag = $("#area-tag4");
+                var str = "";
+                str += target.replace(regExp, "($&)");
+                areatag.html(str);
+            });
+            $("#btn-extra-btn").on("click",function() {
+                var target = $("#personal-number").val();
+                // var regExp = /^\d{6}-\d{7}$/;
+                // 시작과 끝을 잡아주지 않으면 숫자가 여러개여도 정상으로 본다
+                var regExp = /^\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])-[1-4]\d{6}$/;
+                // 연도 숫자(/d){2개}, 월( ), 일( ) - 첫번째 자리 1~4만 입력, 두번째 자리부터 숫자{6개}
+                if(regExp.test(target)) {
+                    console.log("정상입력");
+                } else {
+                    alert("입력오류");
+                }
+            });
+            $("#btn-hangeul").on("click", function() {
+                var target = $("#hangeul").val();
+                var regExp = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+                if(regExp.test(target)) {
+                    console.log("한글ㅇ");
+                } else {
+                    alert("한글ㄴ");
+                }
+            });
+        });
+    </script>
+    <h1>정규표현식</h1>
+    <p>
+        1. 특정한 규칙을 가진 문자열의 집합을 표현하는데 사용하는 형식 언어
+        <br>
+        2. 주로 프로그래밍 언어나 텍스트 에디터 등에서 문자열의 검색과 치환을 위한 용도로 사용됨
+        <br>
+        3. 입력한 문자열에서 특정한 조건을 표현할 경우 다소 복잡할 수 있지만 표현식을 숙지하면
+        매우 간단하게 표현할 수 있음. 
+    </p>
+    <h3>정규표현식의 객체 생성</h3>
+    <button id="btn-regex1">확인하기</button>
+    <div id="area-tag1" class="area"></div>
+    <h3>플래그 문자</h3>
+    <p>
+        g : 전역비교를 수행<br>
+        i : 대소문자 구분하지 않음<br>
+        m : 여러줄 검사 수행(앵커문자와 같이 사용)
+    </p>
+    <button id="btn-flag">플래그 문자 확인</button>
+    <div id="area-tag2" class="area"></div>
+    <h3>앵커 문자</h3>
+    <p>
+        문자열의 앞과 뒤를 구분해주는 정규표현식 기호
+    </p>
+    <button id="btn-ank">앵커 문자 확인</button>
+    <div id="area-tag3" class="area"></div>
+    <h3>메타문자</h3>
+    <p>
+        [] : 대괄호 사이에 존재하는 문자들 중 하나 일치
+    </p>
+    <button id="btn-meta">메타문자 확인</button>
+    <div id="area-tag4" class="area"></div>
+    <h3>추가 메타 문자</h3>
+    <p>
+        \d : 숫자<br>
+        \w : 아무 단어 전부(숫자포함)<br>
+        \s : 공백문자(탭, 띄어쓰기, 줄바꿈)<br>
+        \D : 숫자가 아닌것<br>
+        \W : 단어가 아닌것<br>
+        \S : 공백문자가 아닌것<br>
+    </p>
+    <h3>수량문자</h3>
+    <p>
+        a+ : a가 적어도 1개 이상<br>
+        a* : a가 0개 또는 여러개<br>
+        a? : a가 0개 또는 1개<br>
+        a{5} : a가 5개<br>
+        a{2,5} : a가 2~5개<br>
+        a{2, } : a가 2개 이상<br>
+        a{ ,2} : a가 2개 이하<br>
+        <b>a는 메타 문자로 주로 사용</b>
+    </p>
+    <label for="personal-number">주민번호 입력: </label><input type="text" name="personal-number" id="personal-number">
+    <button id="btn-extra-btn">추가 메타문자 확인</button><br>
+    <label for="hangeul">한글 입력 : </label><input type="text" name="hangeul" id="hangeul">
+    <button id="btn-hangeul">한글 문자 확인</button>
+</body>
+</html>

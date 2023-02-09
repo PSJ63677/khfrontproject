@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 이벤트</title>
+    <script src="../js/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+    <script>
+        $(document).on("mousemove", function(event) {
+            // console.log("X : " + event.pageX + ", y : " + event.pageY);
+            $("#span1").html("<br>" + "X : " + event.pageX + ", y : " + event.pageY);
+        });
+
+        $(function() {
+            $("#div-hover").on("mouseover", function() {
+                // 이벤트가 발생한 자기 자신, $("#div-hover")
+                // 쓸 수도 있지만 this를 사용할 수 있음
+                $(this).css("background-color", "pink");
+                // $("#div-hover").css("background-color", "pink");
+            });
+
+            // click, dblclick
+            $("#click").on("click", function() {
+                alert("clicked");
+            });
+            $("#dblclick").on("dblclick", function() {
+                alert("double clicked");
+            });
+            
+            // mousedown(누를때), mouseup(뗄때)
+            $("#div-updown").on("mousedown", function() {
+                $(this).css("background-color", "red");
+            });
+            $("#div-updown").on("mouseup", function() {
+                $(this).css("background-color", "blue");
+            });
+            
+            // 키보드 관련 이벤트
+            // keydown : 한글 감지
+            // keypress : 숫자 영어 감지
+            $("textarea").on("keyup", function() {
+                let inputCount = $(this).val().length;
+                $("#noti").html("작성 가능한 글자수 : " + (150 - inputCount));
+            });
+
+            // form 이벤트
+            // 폼태그.on("submit", function() { });
+            $("#my-form").on("submit", function() {
+                let userId = $("#userId").val();
+                let userPw = $("#userPw").val();
+                if(userId == "") {
+                    alert("ID를 입력해주세요.");
+                    return false;
+                } else if(userPw == "") {
+                    alert("PW를 입력해주세요.");
+                    return false;
+                }
+                // if (id pw 입력완료) → return true;
+                // else → return false;
+                // 기본적으로 모든 함수에 return true가 생략되어있어 동작 함. false 적으면 동작하지X
+            });
+            // input태그의 커서와 관련된 이벤트
+            // focus(커서있음), blur(커서없음)
+            $("#userId").on("focus", function() {
+                $(this).css("background-color", "green");
+            });
+            $("#userId").on("blur", function() {
+                $(this).css("background-color", "white");
+            });
+            // 체크 했을 때 : #check-item 밑에 체크박스들이 모두 체크 되는 것
+            // 체크 해제 시 : #check-item 밑에 체크박스들이 모두 체크 해제 되는 것
+            $("#allCheck").on("change", function() {
+                // attr 말고 prop() 사용해도 가능
+                var checkBoxs = $("#check-item").children();
+                if($(this).is(":checked")) {
+                    checkBoxs.attr("checked", "checked");
+                } else {
+                    checkBoxs.removeAttr("checked");
+                }
+            });
+            // 이벤트 버블링 막기, 기본 이벤트 제거
+            $("#h1-click").on("click", function() {
+                alert("h1 click");
+            });
+            $("#span-click").on("click", function() {
+                e.stopPropagation();    // 이벤트 버블링 방지
+                alert("span click");
+                // return false;
+            });
+            $("a").on("click", function() {
+                e.preventDefault();    // 페이지 이동 방지(기본 이벤트 제거)
+                alert("a click");
+                // return false;
+            })
+        });
+    </script>
+    <h1>이벤트</h1>
+    <p>
+        사용자가 마우스를 클릭하거나 마우스를 움직여 특정화면 위로 가져가거나 키보드를 누르는 행위를 이벤트라고 부름
+        <br>jQuery에서는 event객체를 통해서 이벤트를 제어함.
+    </p>
+    <h3>마우스오버 이벤트</h3>
+    <div id="div-hover" style="border:3px solid black;width:100px;height:100px"></div>
+    <h3>클릭 / 더블클릭 이벤트</h3>
+    <p id="click">click</p>
+    <p id="dblclick">double click</p>
+    <p></p>
+    <h3>마우스업/다운 이벤트</h3>
+    <div id="div-updown" style="border:3px solid black;width:100px;height:100px"></div>
+    <h3>마우스이동 이벤트</h3>
+    <h1>
+        Mouse is a coordinate :
+        <span id="span1"></span>
+    </h1>
+    <h3>키업/키프레스/키다운 이벤트</h3>
+    <div>
+        <p>글 작성</p>
+        <h1 id="noti">작성가능한 글자수 : 150</h1>
+        <textarea name="" id="" cols="60" rows="5"></textarea>
+    </div>
+    <h1>입력 양식(form) 이벤트</h1>
+    <h3>submit / focus / blur</h3>
+    <form id="my-form" action="result.html">
+        ID : <input type="text" name="userId" id="userId">
+        PW : <input type="password" name="userPw" id="userPw">
+        <!-- required 써도 되나 이벤트와 중복은 안됨. required가 먼저 실행 -->
+        <input type="submit" value="제출">
+        <input type="reset" value="취소">
+    </form>
+    <h3>change</h3>
+    <p>
+        input태그의 type속성이 checkbox, radio인 input태그와 select태그의 상태 변경을 감지하는 이벤트
+    </p>
+    전체 : <input type="checkbox" name="allCheck" id="allCheck"> <br>
+    <div id="check-item">
+        <input type="checkbox" name="" id=""> A
+        <input type="checkbox" name="" id=""> B
+        <input type="checkbox" name="" id=""> C
+    </div>
+    <h3>이벤트 버블링 막기 및 기본 이벤트 제거</h3>
+    <p>
+        stopPropagation() : 이벤트 전달 제거 <br>
+        preventDefault() : 기본 이벤트 제거
+    </p>
+    <h1 id="h1-click">
+        <span id="span-click">click</span>
+    </h1>
+    <h1>
+        <a href="http://www.iei.or.kr">kh정보교육원</a>
+    </h1>
+</body>
+</html> 
